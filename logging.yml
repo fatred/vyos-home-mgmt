@@ -1,0 +1,16 @@
+---
+- hosts: router
+  connection: network_cli
+  tasks: 
+  - name: set logging config
+    vyos.vyos.vyos_logging_global:
+      config:
+        global_params:
+          archive:
+            file_num: 10
+            size: 1024
+          facilities:
+          - facility: all
+            severity: info
+          marker_interval: 1024
+          preserve_fqdn: true
