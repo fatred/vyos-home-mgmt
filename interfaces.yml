@@ -1,0 +1,24 @@
+---
+- hosts: router
+  connection: network_cli
+  tasks: 
+  - name: WAN interface
+    vyos.vyos.vyos_l3_interfaces:
+      config:
+      - name: eth1
+        ipv4:
+        - address: dhcp
+        ipv6:
+        - address: dhcpv6
+
+  - name: Configure virtual interface address
+    vyos.vyos.vyos_l3_interfaces:
+      config:
+      - name: "{{ trunk_port }}"
+        vifs:
+        - vlan_id: "{{ item.vlan_id }}"
+          ipv4:
+          - address: "{{ item.ipv4_address }}"
+          ipv6:
+          - address: "{{ item.ipv6_address }}"
+    with_items: "{{ vlan_trunk }}"
