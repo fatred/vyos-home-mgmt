@@ -5,3 +5,6 @@ all:
       hosts:
         rtr-test-vyos01:
           ansible_host: 10.31.74.10
+    test: 
+      children:
+        router:

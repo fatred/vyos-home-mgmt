@@ -1,1 +1,8 @@
 ---
+ipv4_supernet: 100.68.0.0/16
+ipv6_supernet: fda4:7911:df44::/48
+trunk_port: eth2
+vlan_trunk:
+- vlan_id: 9
+  ipv4_address: "{{ ipv4_supernet | ipsubnet(24, 9) | ipaddr('1') }}"
+  ipv6_address: "{{ ipv6_supernet | ipsubnet(64, 9) | ipaddr('1') }}"
