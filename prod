@@ -1,0 +1,7 @@
+---
+all:
+  children:
+    router:
+      hosts:
+        rtr-iojh-vyos01:
+          ansible_host: 10.31.74.1

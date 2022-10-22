@@ -1,0 +1,13 @@
+---
+- hosts: router
+  connection: network_cli
+  tasks: 
+  - name: configure hostname and domain-name
+    vyos.vyos.vyos_system:
+      host_name: "{{ inventory_hostname }}"
+      domain_name: "{{ domain_name }}"
+  
+  - name: configure dns servers
+    vyos.vyos.vyos_system: 
+      name_servers: "{{ dns_servers }}"
+      domain_search: "{{ dns_search_space }}"
